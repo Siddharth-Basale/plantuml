@@ -1,0 +1,11 @@
+Test Case ID,Scenario,Preconditions,Steps,Expected Result,Remarks
+TC001,Successful form submission,User has valid login credentials,1. Login to portal 2. Fill required details 3. Click Submit,Request successfully submitted Confirmation message displayed Unique Request ID generated,Verify Request ID syncs with SAP
+TC002,Request reaches SAP backend,Request submitted from portal,1. Submit request digitally 2. Check SAP transaction log,"Request is available in SAP backend Status = ""New""",Ensure mapping between frontend and SAP is correct
+TC003,Mandatory fields validation,User skips mandatory fields,1. Try submitting form without required data,System shows error for missing fields Submission blocked,Validation should match SAP data requirements
+TC004,Duplicate submission handling,User submits same request twice,1. Submit request 2. Resubmit same request,System prevents duplicate OR assigns unique IDs,Depends on business rule
+TC005,SAP order creation,Request received in SAP,1. Open SAP backend 2. Check for order creation,SAP Sales/Service order created with correct details,Verify data mapping
+TC006,Workflow approval,Request requires approval in SAP,1. Manager logs into SAP 2. Approves request,"Status changes to ""Approved""",Approval reflected in frontend portal
+TC007,Error handling in SAP integration,Backend connectivity issue,1. Submit request during SAP downtime,Error message displayed Request retried/queued,Ensure retry mechanism/logging
+TC008,Status update sync,Request status changes in SAP,"1. Update status in SAP (e.g., Fulfilled) 2. Check portal",Frontend shows updated status,Verify synchronization frequency
+TC009,End-to-End fulfillment,Request fully processed,1. Submit request 2. Process in SAP 3. Complete fulfillment,"User notified of completion SAP shows status ""Closed/Completed""",Notification to user must be sent
+TC010,Reporting & Audit trail,Request completed,1. Generate report in SAP 2. Compare with frontend logs,Records consistent in both systems,Check audit trail for compliance

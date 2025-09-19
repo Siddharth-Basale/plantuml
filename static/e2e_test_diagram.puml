@@ -1,0 +1,26 @@
+@startuml
+actor User
+participant Frontend as FE
+participant Backend as BE
+participant SAP
+database Database as DB
+
+User -> FE: Login with credentials
+FE -> BE: Validate credentials
+BE -> DB: Check user record
+DB --> BE: Return user record
+BE --> FE: Credentials valid
+FE -> User: Display dashboard
+User -> FE: Fill form and submit
+FE -> BE: Send request
+BE -> SAP: Forward request
+SAP --> BE: Acknowledge receipt
+BE --> FE: Confirmation message
+FE --> User: Show confirmation with Request ID
+User -> SAP: (indirectly) Check Transaction log
+SAP --> User: Confirm Request ID mapping
+User -> BE: (indirectly) Check order status
+BE -> SAP: Query order status
+SAP --> BE: Return order status
+BE --> User: Show order status
+@enduml
